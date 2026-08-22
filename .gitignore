@@ -2,11 +2,13 @@
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyd
 
 # Entornos virtuales
 .venv/
 venv/
 env/
+.env
 
 # Visual Studio Code
 .vscode/
