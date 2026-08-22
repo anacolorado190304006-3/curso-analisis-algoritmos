@@ -16,7 +16,14 @@ def es_bisiesto(anio: int) -> bool:
     Returns:
         True si el año es bisiesto, False en caso contrario.
     """
-    # TODO: implemente la lógica usando if / elif / else.
+    if anio % 400 == 0:
+        return True
+    elif anio % 100 == 0:
+        return False
+    elif anio % 4 == 0:
+        return True
+    else:
+        return False
  
  
 def leer_anios() -> list[int]:
@@ -28,14 +35,37 @@ def leer_anios() -> list[int]:
     Returns:
         Lista de años como enteros.
     """
-    # TODO: implemente la lectura y validación.
+    while True:
+        try:
+            print('-------------- CLASIFICADOR DE AÑOS --------------')
+            lista = input('Ingrese la lista de años separados por comas (ej. 2000, 2023, 2024): ')
+            anios = [int(anio.strip()) for anio in lista.split(",")]
+
+            if any(anio < 0 for anio in anios):
+                raise ValueError(f"Los años no pueden ser negativos")
+
+            return anios
+        except ValueError as error:
+            print(f'ERROR: {error}, verifique los valores ingresados\n')
  
  
 def main() -> None:
     """Punto de entrada del script."""
-    # TODO: use leer_anios(), filtre los años bisiestos con una
-    # comprensión de listas, e imprima un resumen que incluya al menos
-    # la lista de años bisiestos y cuántos hay.
+    lista_anio = leer_anios()
+    bisiesto = [anio for anio in lista_anio if es_bisiesto(anio)]
+
+    decadas = {anio // 10 * 10 for anio in lista_anio}
+
+    agrupados = {
+        decada: [anio for anio in lista_anio if anio // 10 * 10 == decada]
+        for decada in decadas
+    }
+
+    print(f"\n→ Años ingresados: {lista_anio}")
+    print(f"→ Años agrupados por década: {agrupados}\n")
+    print(" ----------------- RESULTADO ----------------- ")
+    print(f"→ Años bisiestos: {bisiesto}")
+    print(f"→ Cantidad de años bisiestos: {len(bisiesto)} de {len(lista_anio)}")
  
  
 if __name__ == "__main__":
