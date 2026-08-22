@@ -18,5 +18,16 @@ Ejemplo de ejecución de un programa:
 python ejercicios-clase/semana-2/ejercicio.py
 ```
 
+## Flujo de trabajo
+
+Para registrar cambios en el repositorio se utiliza el siguiente flujo:
+
+```bash
+git status
+git add archivos_que_se_modificaron
+git commit -m "Descripcion del cambio"
+git push
+```
+
 ## Contacto
 - `Teams - Outlook`: anacolorado323628@correo.itm.edu.co
