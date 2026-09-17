@@ -165,21 +165,74 @@ Por lo tanto, `f(n) = Θ(n)` y `n^(log₂(2)) = Θ(n)` tienen el mismo orden de 
 
 Este comportamiento se mantiene para el mejor, promedio y peor caso de merge sort.
 
-#### Insertion sort
+**#### Insertion sort**
 
-Para insertion sort, el comportamiento depende de la organización inicial de los datos.
+Para calcular manualmente la complejidad de `insertion_sort`, se analiza cuántas veces se ejecuta cada operación en función de `n`, donde `n` es el número de elementos de la lista.
 
-En el mejor caso, los elementos ya están en el orden requerido. Para cada posición solamente se realiza la comparación necesaria y no se realizan desplazamientos importantes. Por esto, el crecimiento es:
+La línea `arreglo = datos.copy()` realiza una copia de los `n` elementos, por lo que tiene costo `Θ(n)`. La inicialización `comparaciones = 0` tiene costo `Θ(1)`.
 
-`Θ(n)`
+El ciclo:
 
-En el peor caso, los elementos están completamente en el orden contrario. Para cada nuevo elemento es necesario compararlo con una cantidad creciente de elementos y desplazarlos. El número total de operaciones crece de forma cuadrática:
+`for i in range(1, len(arreglo)):`
 
-`Θ(n²)`
+realiza `n - 1` iteraciones, por lo que su costo es `Θ(n)`. En cada iteración se ejecutan:
 
-Para el caso promedio, considerando entradas sin una organización previa específica, el comportamiento también tiene crecimiento cuadrático:
+* `clave = arreglo[i]` → `Θ(1)` por iteración, en total `Θ(n)`.
+* `j = i - 1` → `Θ(1)` por iteración, en total `Θ(n)`.
 
-`Θ(n²)`
+Después se ejecuta el ciclo `while`. Su comportamiento depende del orden inicial de los datos.
+
+**Mejor caso:** cuando la lista ya está ordenada de mayor a menor. En cada iteración del `for`, el `while` realiza una sola comparación, ejecuta `comparaciones += 1` y la condición `arreglo[j] < clave` resulta falsa, por lo que se ejecuta `break`. No se realizan desplazamientos de elementos.
+
+Por tanto:
+
+`1 + 2 + 3 + ... + (n - 1)`
+
+no corresponde al número de iteraciones del `while` en este caso, porque solamente se realiza una iteración por cada posición. Así, `comparaciones += 1`, la condición del `if` y `break` se ejecutan `Θ(n)` veces. La asignación final `arreglo[j + 1] = clave` también se ejecuta `n - 1` veces.
+
+Sumando los costos:
+
+`Θ(n) + Θ(1) + Θ(n) + Θ(n) + Θ(n) + Θ(n) + Θ(n) = Θ(n)`
+
+Por lo tanto, el mejor caso es:
+
+`T_mejor(n) = Θ(n)`
+
+**Peor caso:** cuando la lista está ordenada de menor a mayor. Para cada posición `i`, la clave debe desplazarse por todos los elementos anteriores. El `while` puede ejecutarse `i` veces.
+
+El número total de iteraciones del `while` es:
+
+`1 + 2 + 3 + ... + (n - 1) = n(n - 1) / 2 = Θ(n²)`
+
+En cada una de estas iteraciones se ejecutan `comparaciones += 1`, la comparación `arreglo[j] < clave`, el desplazamiento `arreglo[j + 1] = arreglo[j]` y `j -= 1`. Todas estas operaciones se ejecutan `Θ(n²)` veces.
+
+La asignación final `arreglo[j + 1] = clave` se ejecuta una vez por cada iteración del `for`, por lo que aporta `Θ(n)`.
+
+Sumando los costos principales:
+
+`Θ(n) + Θ(1) + Θ(n) + Θ(n) + Θ(n²) + Θ(n²) + Θ(n²) + Θ(n) = Θ(n²)`
+
+Por lo tanto, el peor caso es:
+
+`T_peor(n) = Θ(n²)`
+
+**Caso promedio:** para una entrada sin un orden previo específico, en promedio la clave debe desplazarse una cantidad proporcional a la posición que ocupa dentro de la parte ya ordenada. Por esta razón, el número esperado de iteraciones del `while` también crece proporcionalmente a una suma de orden cuadrático:
+
+`1 + 2 + 3 + ... + (n - 1) = Θ(n²)`
+
+Las operaciones realizadas dentro del `while`, como la comparación, el desplazamiento y `j -= 1`, tienen por tanto un costo total de `Θ(n²)`. Las operaciones externas aportan como máximo `Θ(n)` y no cambian el término dominante.
+
+Así:
+
+`T_promedio(n) = Θ(n²)`
+
+En resumen:
+
+| Caso     | Complejidad temporal |
+| -------- | -------------------- |
+| Mejor    | `Θ(n)`               |
+| Promedio | `Θ(n²)`              |
+| Peor     | `Θ(n²)`              |
 
 ### Comparación de complejidades
 
