@@ -45,7 +45,7 @@ Muy buen trabajo: el laboratorio está completo, el código funciona y sus concl
 - Los tres generadores producen listas del mismo tamaño, sin repetidos, y el aleatorio se repite con la misma semilla.
 
 **Lo que puede mejorar:**
-- Hay varios errores de estilo PEP 8 (faltan líneas en blanco entre funciones, falta salto de línea al final de archivos, una línea con espacios sobrantes).
+- Hay varios errores de estilo PEP 8 (faltan líneas en blanco entre funciones).
 - Faltan docstrings completos (con Args y Returns) en `generar_casi_ordenado`, en las funciones de gráficas y en `medir_algoritmo`, y a esta última le falta la anotación de tipo del parámetro `algoritmo`. `algoritmos.py` no tiene docstring de módulo.
 
 ## 4. Calidad del análisis de las gráficas (17 / 20)
