@@ -1,7 +1,8 @@
 
 # Lab 2 — Dividir y vencerás
 
-**Estudiante:** Ana María Colorado Varela  
+**Estudiante:** Ana María Colorado Varela
+
 **Asignatura:** Análisis de Algoritmos
 
 ## Reproducción
@@ -45,9 +46,9 @@ Por el caso 2 del teorema maestro, como n^(log₂ 2) = n y el trabajo de combina
 
 ### 2. Comparación con las mediciones
 
-Al duplicar n de 1000 a 2000, la fuerza bruta pasó de 0,088373 s a 0,267211 s, un factor aproximado de 3,02; divide y vencerás pasó de 0,003515 s a 0,005920 s, un factor de 1,68. De 2000 a 4000, los factores fueron aproximadamente 4,48 y 2,01, respectivamente.
+Al duplicar n de 1000 a 2000, la fuerza bruta pasó de 0,032723 s a 0,128417 s, un factor aproximado de 3,92; divide y vencerás pasó de 0,001875 s a 0,003194 s, un factor de 1,70. De 2000 a 4000, los factores fueron aproximadamente 4,21 y 2,11, respectivamente.
 
-Estos resultados son compatibles en general con el crecimiento cuadrático y n log n. Las diferencias respecto de los factores teóricos se deben a variaciones de medición, constantes y costos de ejecución.
+Estos resultados son compatibles en general con el crecimiento cuadrático y n log n. En teoría, duplicar n hace que el tiempo cuadrático crezca aproximadamente 4 veces, mientras que para n log n el factor es algo mayor que 2. Las diferencias se deben a variaciones de medición, constantes y costos de ejecución.
 
 ### 3. ¿Desde qué tamaño conviene divide y vencerás?
 
@@ -59,6 +60,6 @@ No necesariamente. Se puede dividir el arreglo en dos mitades, hallar el máximo
 
 ### 5. ¿Qué algoritmo recomendaría para n = 1.000.000?
 
-Recomendaría divide y vencerás para este problema. Con n = 4000, la fuerza bruta tardó 1,197583 s y divide y vencerás 0,011909 s. Extrapolando con los modelos asintóticos desde ese tamaño, la fuerza bruta tardaría del orden de 20,8 horas y divide y vencerás alrededor de 5 segundos.
+Recomendaría divide y vencerás para este problema. Con n = 4000, la fuerza bruta tardó 0,540360 s y divide y vencerás 0,006737 s. Extrapolando desde ese tamaño con los modelos asintóticos, la fuerza bruta tardaría aproximadamente 9,4 horas y divide y vencerás alrededor de 2,8 segundos para n = 1.000.000.
 
-Estas cifras son estimaciones, no mediciones directas: suponen que se mantienen los modelos de crecimiento y las condiciones de ejecución. En tamaños tan grandes, la estimación puede diferir del tiempo real.
+Estas cifras son estimaciones, no mediciones directas. Suponen que se mantienen los modelos de crecimiento y las condiciones de ejecución; el tiempo real puede variar.
